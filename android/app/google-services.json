@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "651986108285",
+    "firebase_url": "https://source-catalyst-plus-default-rtdb.firebaseio.com",
+    "project_id": "source-catalyst-plus",
+    "storage_bucket": "source-catalyst-plus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651986108285:android:79a12eb2e921342a895614",
+        "android_client_info": {
+          "package_name": "in.thesourcecatalyst.sourcecatalystplus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651986108285-sih4tfsnc2uvr5f2tgbn7ujk7f5el5j1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDDkgVgMysxUlVpBId2A6qpHJsmNZAqVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "651986108285-sih4tfsnc2uvr5f2tgbn7ujk7f5el5j1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

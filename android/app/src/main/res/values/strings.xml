@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">SourceCatalyst</string>
-    <string name="title_activity_main">SourceCatalyst</string>
+    <string name="app_name">Source Catalyst</string>
+    <string name="title_activity_main">Source Catalyst</string>
     <string name="package_name">in.thesourcecatalyst.sourcecatalystplus</string>
     <string name="custom_url_scheme">in.thesourcecatalyst.sourcecatalystplus</string>
 </resources>
