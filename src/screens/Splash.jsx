@@ -18,6 +18,7 @@ function Splash() {
     <div className="flex flex-col h-screen bg-light justify-center items-center">
         <div className="h-[7.5rem] w-[7.5rem] rounded-[30px] bg-white flex justify-center items-center mt-auto">
             <img className="h-[5.9375rem] w-[5.9375rem]" src={logo}/>
+
         </div>
         <p className="mt-auto font-label text-label font-lexend mb-[2.1875rem] ">
         v0.2

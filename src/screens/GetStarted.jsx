@@ -34,7 +34,7 @@ const navigateNext = () => {
   if (currentSlide < 4) {
       setCurrentSlide(prevSlide => prevSlide + 1);
   } else {
-      navigate("/home");
+      navigate("/login");
   }
 };
 
@@ -58,6 +58,8 @@ const containerVariants = {
     },
   },
 };
+
+
 
 
 

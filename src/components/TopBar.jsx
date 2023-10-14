@@ -1,12 +1,14 @@
 import React from "react";
-// import { UserAuth } from "../context/AuthContext";
-import monish from "../images/monish.jpg"
+import { UserAuth } from "../context/AuthContext";
 
 import { useNavigate } from "react-router-dom";
 
 function TopBar() {
+
+
   const navigate = useNavigate();
-  // const { user } = UserAuth();
+  const { user } = UserAuth();
+
   const goBack = () => {
     navigate("/"); // Go back one step in history
   };
@@ -43,7 +45,7 @@ function TopBar() {
         Source Catalyst
       </p>
 
-      {/* <svg
+      <svg
         onClick={goChats}
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -77,9 +79,8 @@ function TopBar() {
       <img
         onClick={goProfile}
         className="mr-m-20 h-[2.125rem] w-[2.125rem] rounded-full "
-        // src={user?.photoURL}
-        src = {monish}
-      /> */}
+        src={user?.photoURL}
+      />
     </div>
   );
 }

@@ -7,8 +7,8 @@ function HomeLayout() {
   return (
     <div className="">
       <TopBar />
-      <div className="flex flex-col items-center">
-        <div className="w-full ">
+      <div className="flex flex-col items-center bg-light">
+        <div className="w-full max-w-[800px]">
           <Outlet />
         </div>
       </div>
