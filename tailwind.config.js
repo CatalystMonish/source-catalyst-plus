@@ -33,6 +33,8 @@ export default {
       colors: {
         white: "#FFFFFF",
         primary: "#2E7CF6",
+        hover:"#3b86f6",
+        clicked:"#1f5db9",
         "text-light": "#939393",
         light: "#F3F3F3",
         dark: "#000000",

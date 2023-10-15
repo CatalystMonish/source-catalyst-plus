@@ -93,7 +93,7 @@ const containerVariants = {
           height="0.3125rem"
           isLabelVisible={false}
           bgColor="#2E7CF6"
-          borderRadius={0}
+          borderRadius="0"
           maxCompleted={100}
         />
       </div>

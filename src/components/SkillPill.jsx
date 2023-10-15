@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getDownloadURL, ref } from "firebase/storage";
-import { doc, getDoc } from "firebase/firestore";
-import { db, storage } from "../firebase";
+import { FirebaseFirestore } from '@capacitor-firebase/firestore';
+import { storage } from '../firebase.js';  // Adjust the path to your Firebase config file
+import { ref, getDownloadURL } from 'firebase/storage';  // Import ref and getDownloadURL
+import logo from "../images/logo.png";
 
 function SkillPill({ skillId }) {
   const [skill, setSkill] = useState({});
@@ -10,17 +11,17 @@ function SkillPill({ skillId }) {
   useEffect(() => {
     const fetchSkillData = async () => {
       try {
-        const skillDoc = await getDoc(doc(db, "skills", skillId));
-        if (skillDoc.exists) {
-          const skillData = skillDoc.data();
-          setSkill(skillData);
+        const { snapshot } = await FirebaseFirestore.getDocument({
+          reference: `skills/${skillId}`
+        });
 
-          if (skillData.skillImage) {
-            const url = await getDownloadURL(
-              ref(storage, skillData.skillImage)
-            );
-            setImageURL(url);
-          }
+        const skillData = snapshot.data;  // Assuming data will always be present
+        setSkill(skillData);
+
+        if (skillData.skillImage) {
+          const storageRef = ref(storage, skillData.skillImage);
+          const url = await getDownloadURL(storageRef);
+          setImageURL(url);
         }
       } catch (error) {
         console.error("Error fetching skill data:", error);
@@ -31,18 +32,20 @@ function SkillPill({ skillId }) {
   }, [skillId]);
 
   return (
-    <div className="flex w-fit items-center rounded-full bg-light p-[0.3125rem]">
-      {imageURL && (
-        <img
-          alt={skill.skillName}
-          src={imageURL}
-          className="h-[1.25rem] w-[1.25rem] rounded-full"
-        />
-      )}
-      <p className="ml-[0.3125rem] font-lexend text-small font-small">
-        {skill.skillName}
-      </p>
-    </div>
+      <div className="flex w-fit items-center rounded-full bg-light py-[0.1875rem] pr-[0.5rem] px-[0.1875rem]">
+        {imageURL && (
+            <img
+                width="20"
+                height="20"
+                placeholder={logo}
+                src={imageURL}
+                className="h-[1.25rem] w-[1.25rem] rounded-full bg-white"
+            />
+        )}
+        <p className="ml-[0.3125rem] font-lexend text-small font-small">
+          {skill.skillName}
+        </p>
+      </div>
   );
 }
 

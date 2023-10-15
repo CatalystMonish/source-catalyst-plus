@@ -1,7 +1,36 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../images/logo.png';
+import { LocalNotifications } from '@capacitor/local-notifications';
 
+
+async function sendNotification() {
+    try {
+        // Check for permission first
+        const permissions = await LocalNotifications.checkPermissions();
+
+        if (permissions.receive === 'granted') {
+            await LocalNotifications.schedule({
+                notifications: [
+                    {
+                        title: 'Hello!',
+                        body: 'This is a local notification',
+                        id: Date.now(),
+                        schedule: { at: new Date() },
+                    },
+                ],
+            });
+        } else {
+            const requestResult = await LocalNotifications.requestPermissions();
+
+            if (requestResult.receive === 'granted') {
+                // You can schedule the notification now since permission is granted
+            }
+        }
+    } catch (error) {
+        console.error('Error scheduling notification:', error);
+    }
+}
 
 function Splash() {
   const navigate = useNavigate();
@@ -9,6 +38,7 @@ function Splash() {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate('/welcome');
+        sendNotification();
     }, 2000); // Navigate after 2 seconds
 
     return () => clearTimeout(timer); // Clear the timer if the component is unmounted before the timeout finishes

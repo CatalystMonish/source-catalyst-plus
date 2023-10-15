@@ -4,13 +4,18 @@
   "webDir": "dist",
   "server": {
     "androidScheme": "https",
-    "url": "http://192.168.1.213:5173",
-    "cleartext": true
+    "_comment": " \"url\": \"http://192.168.1.213:5173/\",\n    \"cleartext\": true"
 
   },
   "plugins": {
     "FirebaseAuthentication": {
       "providers": ["google.com"]
+    },
+    "LocalNotifications": {
+      "requestPermissions": true,
+      "smallIcon": "ic_notif",
+      "iconColor": "#488AFF",
+      "allowWhileIdle": true
     }
   }
   

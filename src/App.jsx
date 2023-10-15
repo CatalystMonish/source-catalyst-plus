@@ -10,10 +10,13 @@ import LoginScreen from "./screens/LoginScreen.jsx";
 import { AuthContextProvider } from "./context/AuthContext.jsx";
 import Protected from "./components/Protected";
 import React from "react";
+import OngoingProjectScreen from "./screens/OngoingProjectScreen.jsx";
+import {LoadingProvider} from "./context/LoadingContext.jsx";
 
 function App() {
   return (
     <div>
+      <LoadingProvider>
     <AuthContextProvider>
       <Router>
         <Routes>
@@ -22,6 +25,8 @@ function App() {
           <Route path="/started" exact element={<GetStarted />} />
           <Route path="/login" exact element={   <LoginScreen/>  }/>
 
+
+          <Route path="/ongoing" exact element={<Protected><OngoingProjectScreen/></Protected>}/>
 
 
 
@@ -56,6 +61,7 @@ function App() {
         </Routes>
       </Router>
     </AuthContextProvider>
+        </LoadingProvider>
     </div>
   );
 }

@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
 
 const Navbar = () => {
   const location = useLocation();
   const [selected, setSelected] = useState("home");
-
+  const hapticsImpactMedium = async () => {
+    await Haptics.impact({ style: ImpactStyle.Medium });
+  };
   useEffect(() => {
     // Check the current pathname and update the selected state
     const currentKey =
@@ -175,6 +178,11 @@ const Navbar = () => {
   return (
     <div className="fixed bottom-0 flex h-[4rem] w-full justify-around border-t bg-white px-1 py-1 font-lexend text-label font-label outline-none">
       {Object.keys(icons).map((key) => (
+          <button
+              key={key}
+              onClick={hapticsImpactMedium}
+              className={`focus:outline-none bg-transparent border-none p-0 ${selected === key ? "active" : ""}`}
+          >
         <Link
           key={key}
           to={icons[key].route}
@@ -190,6 +198,7 @@ const Navbar = () => {
             {key}
           </div>
         </Link>
+          </button>
       ))}
     </div>
   );

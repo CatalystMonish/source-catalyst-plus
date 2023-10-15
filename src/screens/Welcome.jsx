@@ -11,8 +11,8 @@ function Welcome() {
   };
 
   return (
-    <div className="bg-primary flex justify-center h-screen">
-      <div className="mt-auto w-full mx-m-20 mb-[1.5625rem]">
+    <div className="bg-primary flex justify-center h-screen ">
+      <div className="mt-auto w-full mx-m-20 mb-[1.5625rem] max-w-[800px]">
         <p className="font-lexend text-[1.875rem] text-white">
           Welcome to
         </p>

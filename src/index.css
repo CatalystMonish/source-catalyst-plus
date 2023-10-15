@@ -6,3 +6,48 @@
   font-family: "lexend";
   src: url("../src/fonts/LexendDeca-VariableFont_wght.ttf");
 }
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  touch-action: manipulation;
+  background-color: #f3f3f3;
+}
+
+.position2 {
+  transform: scale(1.1);
+}
+
+.card {
+  transition: all 2s;
+}
+
+.my-atropos {
+  width: 30px;
+  height: 30px;
+}
+
+.flex.cursor-pointer {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.flex.cursor-pointer:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #2e7cf6; /* Change the color as you wish */
+}
+
+.slick-dots li {
+  margin: 0 1px; /* Adjust as needed */
+}
+
+.slick-arrow slick-next {
+  background: #000;
+}
