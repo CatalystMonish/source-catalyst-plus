@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { FirebaseFirestore } from '@capacitor-firebase/firestore';
-import { storage } from '../firebase.js';  // Adjust the path to your Firebase config file
-import { ref, getDownloadURL } from 'firebase/storage';  // Import ref and getDownloadURL
-import logo from "../images/logo.png";
+import { db, storage } from '../firebase.js';
+import { doc, getDoc } from 'firebase/firestore';  // Import doc and getDoc
+import { ref, getDownloadURL } from 'firebase/storage';
 
 function SkillPill({ skillId }) {
   const [skill, setSkill] = useState({});
@@ -11,17 +10,20 @@ function SkillPill({ skillId }) {
   useEffect(() => {
     const fetchSkillData = async () => {
       try {
-        const { snapshot } = await FirebaseFirestore.getDocument({
-          reference: `skills/${skillId}`
-        });
+        const skillRef = doc(db, "skills", skillId);
+        const skillSnapshot = await getDoc(skillRef);
 
-        const skillData = snapshot.data;  // Assuming data will always be present
-        setSkill(skillData);
+        if (skillSnapshot.exists) {
+          const skillData = skillSnapshot.data();
+          setSkill(skillData);
 
-        if (skillData.skillImage) {
-          const storageRef = ref(storage, skillData.skillImage);
-          const url = await getDownloadURL(storageRef);
-          setImageURL(url);
+          if (skillData.skillImage) {
+            const storageRef = ref(storage, skillData.skillImage);
+            const url = await getDownloadURL(storageRef);
+            setImageURL(url);
+          }
+        } else {
+          console.error("No skill found with the given ID.");
         }
       } catch (error) {
         console.error("Error fetching skill data:", error);
@@ -32,20 +34,28 @@ function SkillPill({ skillId }) {
   }, [skillId]);
 
   return (
-      <div className="flex w-fit items-center rounded-full bg-light py-[0.1875rem] pr-[0.5rem] px-[0.1875rem]">
-        {imageURL && (
-            <img
-                width="20"
-                height="20"
-                placeholder={logo}
-                src={imageURL}
-                className="h-[1.25rem] w-[1.25rem] rounded-full bg-white"
-            />
-        )}
-        <p className="ml-[0.3125rem] font-lexend text-small font-small">
-          {skill.skillName}
-        </p>
+      <div className="flex-shrink-0">
+      <div className="flex flex-shrink-0 items-center rounded-full bg-light py-[0.1875rem] pr-[0.5rem] pl-[0.1875rem] ">
+        <div className="flex-shrink-0">
+          {imageURL ? (
+              <img
+                  src={imageURL}
+                  className="h-[1.25rem] w-[1.25rem] rounded-full bg-white"
+                  alt=""
+              />
+          ) : (
+              <div className="h-[1.25rem] w-[1.25rem] rounded-full bg-white"></div>
+          )}
+        </div>
+        <div className="flex ml-[0.3125rem]">
+          <p className="font-lexend text-small font-small whitespace-nowrap overflow-hidden">
+            {skill.skillName}
+          </p>
+        </div>
       </div>
+      </div>
+
+
   );
 }
 

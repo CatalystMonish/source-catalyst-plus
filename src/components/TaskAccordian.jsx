@@ -50,12 +50,16 @@ const TaskAccordian = ({ title, content, number }) => {
         ${isOpen ? "opacity-100" : "max-h-0 opacity-0"}`}
       >
         <div className="rounded-b-lg bg-white px-s-15 pb-s-20">
-          <p className=" mr-m-10 font-lexend text-content-body font-content-body text-text-light">
+          <p className=" mr-m-10 font-lexend text-content-body font-content-body">
             {content}
           </p>
           <DocumentBlock />
           <CodeBlock />
           <VideoBlock />
+
+          <p className=" mr-m-10 font-lexend text-content-body font-content-body">
+            {content}
+          </p>
         </div>
       </div>
     </div>

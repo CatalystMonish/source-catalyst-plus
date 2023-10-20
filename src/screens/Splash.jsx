@@ -37,7 +37,7 @@ function Splash() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/welcome');
+      navigate('/home');
         sendNotification();
     }, 2000); // Navigate after 2 seconds
 

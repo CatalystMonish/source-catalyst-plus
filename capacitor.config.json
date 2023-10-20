@@ -4,7 +4,10 @@
   "webDir": "dist",
   "server": {
     "androidScheme": "https",
+    "url": "http://192.168.1.213:5173",
+    "cleartext": true,
     "_comment": " \"url\": \"http://192.168.1.213:5173/\",\n    \"cleartext\": true"
+
 
   },
   "plugins": {

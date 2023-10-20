@@ -6,7 +6,7 @@ function FullStar({ color }) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       fill="currentColor"
-      className={`h-5 w-5 ${color}`}
+      className={`h-[0.75rem] w-[0.75rem] ${color}`}
     >
       <path
         fillRule="evenodd"
@@ -19,7 +19,7 @@ function FullStar({ color }) {
 
 function HalfStar() {
   return (
-    <div className="relative h-5 w-5">
+    <div className="relative h-[0.75rem] w-[0.75rem]">
       <FullStar color="text-light" />
       <div className="absolute left-0 top-0 w-1/2 overflow-hidden">
         <FullStar color="text-[#F2C94C]" />
