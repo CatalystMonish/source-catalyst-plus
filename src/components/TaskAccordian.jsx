@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DocumentBlock from "./DocumentBlock";
 import CodeBlock from "./CodeBlock";
 import VideoBlock from "./VideoBlock";
+import Linkify from "react-linkify";
 
 const ArrowDownIcon = ({ isOpen, onClick }) => {
   const rotationClass = isOpen ? "rotate-180" : "rotate-0";
@@ -25,7 +26,14 @@ const ArrowDownIcon = ({ isOpen, onClick }) => {
   );
 };
 
-const TaskAccordian = ({ title, content, number }) => {
+const TaskAccordian = ({
+  title,
+  preText,
+  postText,
+  number,
+  code,
+  codeLanguage,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -50,15 +58,29 @@ const TaskAccordian = ({ title, content, number }) => {
         ${isOpen ? "opacity-100" : "max-h-0 opacity-0"}`}
       >
         <div className="rounded-b-lg bg-white px-s-15 pb-s-20">
-          <p className=" mr-m-10 font-lexend text-content-body font-content-body">
-            {content}
+          <p className=" mr-m-10 font-lexend text-content-body font-content-body text-text-light ">
+            <Linkify
+              properties={{
+                target: "_blank",
+                style: { color: "#177c8a" },
+              }}
+            >
+              {preText}
+            </Linkify>
           </p>
-          <DocumentBlock />
-          <CodeBlock />
-          <VideoBlock />
+          {/*<DocumentBlock />*/}
+          {code && <CodeBlock code={code} lang={codeLanguage} />}
+          {/*<VideoBlock />*/}
 
-          <p className=" mr-m-10 font-lexend text-content-body font-content-body">
-            {content}
+          <p className=" mr-m-10 font-lexend text-content-body font-content-body text-text-light">
+            <Linkify
+              properties={{
+                target: "_blank",
+                style: { color: "#177c8a" },
+              }}
+            >
+              {postText}
+            </Linkify>
           </p>
         </div>
       </div>

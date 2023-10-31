@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { db, storage } from '../firebase.js';
-import { doc, getDoc } from 'firebase/firestore';  // Import doc and getDoc
-import { ref, getDownloadURL } from 'firebase/storage';
+import { db, storage } from "../firebase.js";
+import { doc, getDoc } from "firebase/firestore"; // Import doc and getDoc
+import { ref, getDownloadURL } from "firebase/storage";
 
-function SkillPill({ skillId }) {
+function SkillPill({ skillId, bgColor = "light" }) {
   const [skill, setSkill] = useState({});
   const [imageURL, setImageURL] = useState(null);
 
@@ -33,18 +33,25 @@ function SkillPill({ skillId }) {
     fetchSkillData();
   }, [skillId]);
 
+  var imgBg = "light";
+  if (bgColor == "light") {
+    imgBg = "white";
+  }
+
   return (
-      <div className="flex-shrink-0">
-      <div className="flex flex-shrink-0 items-center rounded-full bg-light py-[0.1875rem] pr-[0.5rem] pl-[0.1875rem] ">
+    <div className="flex-shrink-0">
+      <div
+        className={`flex flex-shrink-0 items-center rounded-full bg-${bgColor} py-[0.1875rem] pr-[0.5rem] pl-[0.1875rem] `}
+      >
         <div className="flex-shrink-0">
           {imageURL ? (
-              <img
-                  src={imageURL}
-                  className="h-[1.25rem] w-[1.25rem] rounded-full bg-white"
-                  alt=""
-              />
+            <img
+              src={imageURL}
+              className={`h-[1.25rem] w-[1.25rem] rounded-full bg-${imgBg} p-[0.125rem]`}
+              alt=""
+            />
           ) : (
-              <div className="h-[1.25rem] w-[1.25rem] rounded-full bg-white"></div>
+            <div className="h-[1.25rem] w-[1.25rem] rounded-full bg-white"></div>
           )}
         </div>
         <div className="flex ml-[0.3125rem]">
@@ -53,9 +60,7 @@ function SkillPill({ skillId }) {
           </p>
         </div>
       </div>
-      </div>
-
-
+    </div>
   );
 }
 

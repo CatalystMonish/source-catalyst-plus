@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@alptugidin/react-circular-progress-bar": "^1.1.0",
+    "@capacitor-community/native-audio": "^5.0.1",
     "@capacitor-firebase/authentication": "^5.1.0",
     "@capacitor-firebase/firestore": "^5.1.0-dev.3050d98.1695803101",
     "@capacitor/android": "^5.4.2",
@@ -22,16 +23,20 @@
     "@ramonak/react-progress-bar": "^5.0.3",
     "@react-pdf/renderer": "^3.1.13",
     "add": "^2.0.6",
+    "date-fns": "^2.30.0",
     "firebase": "^10.5.0",
     "framer-motion": "^10.16.4",
     "lottie-web": "^5.12.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-horizontal-scrolling-menu": "^4.1.1",
+    "react-linkify": "^1.0.0-alpha",
     "react-progressbar": "^15.4.1",
     "react-router-dom": "^6.16.0",
+    "react-shimmer": "^3.2.0",
     "react-spinners-kit": "^1.9.1",
-    "react-syntax-highlighter": "^15.5.0"
+    "react-syntax-highlighter": "^15.5.0",
+    "react-textarea-autosize": "^8.5.3"
   },
   "devDependencies": {
     "@capacitor/assets": "^3.0.1",

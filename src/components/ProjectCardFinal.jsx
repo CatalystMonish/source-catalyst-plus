@@ -23,8 +23,6 @@ function ProjectCardFinal({ id }) {
 
   if (!project) return null;
 
-  console.log("ID RECIEVED", id);
-
   const navigateDetails = async () => {
     navigate(`/project-details/${id}`);
   };
@@ -34,15 +32,14 @@ function ProjectCardFinal({ id }) {
       onClick={navigateDetails}
       className="flex flex-col w-[15.625rem]  bg-white rounded-[10px] h-full mr-m-10 "
     >
-      <img
-        className="object-contain rounded-t-[10px] w-[15.625rem] max-h-[180px]"
-        src={project.thumbnail}
-      />
+      <div className="relative overflow-hidden rounded-t-[10px] max-h-[180px]">
+        <img className="object-cover w-full " src={project.thumbnail} />
+      </div>
       <div className="mx-m-10">
         <p className="text-label font-label font-lexend mt-m-10">
           {project.projectTitle}
         </p>
-        <p className="text-label font-label font-lexend text-primary">
+        <p className="text-small font-small font-lexend text-primary">
           {project.projectAuthor}
         </p>
         <div className="flex flex-row items-center mt-m-5">

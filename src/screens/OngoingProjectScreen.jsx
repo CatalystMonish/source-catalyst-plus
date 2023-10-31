@@ -2,73 +2,42 @@ import SkillPill from "../components/SkillPill";
 import ProjectItemCard from "../components/ProjectItemCard";
 import TaskAccordian from "../components/TaskAccordian";
 import TitleBold from "../components/TitleBold";
-import React, {useEffect, useState} from "react";
-import { useNavigate } from "react-router-dom";
-import { useLoading } from '../context/LoadingContext.jsx';
-
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useLoading } from "../context/LoadingContext.jsx";
+import { getProjectTasks } from "../utils/getProjectTasks.js";
 
 function OngoingProjectScreen() {
   const { setIsLoading } = useLoading();
+  const { id } = useParams();
+  const [tasksData, setTasksData] = useState([]);
 
   useEffect(() => {
     setIsLoading(false);
   }, []);
+
+  useEffect(() => {
+    const loadTasks = async () => {
+      const tasks = await getProjectTasks(id);
+      setTasksData(tasks);
+    };
+
+    loadTasks(); // Execute the function to load tasks
+  }, [id]);
 
   const navigate = useNavigate();
   const goBack = () => {
     navigate("/"); // Go back one step in history
   };
 
+  const goSubmit = () => {
+    navigate(`/submission/${id}`); // Go back one step in history
+  };
 
   const [activeTab, setActiveTab] = useState("Roadmap");
 
-  const sampleTasks = [
-    {
-      title: "Learn React Basics",
-      content: "Understand JSX, state management, and component lifecycle.",
-    },
-    {
-      title: "Setup Python Environment",
-      content:
-        "Install Python, setup virtualenv, and install necessary packages.",
-    },
-    {
-      title: "Design UI/UX",
-      content: "Sketch the basic UI/UX design and create wireframes.",
-    },
-    {
-      title: "Database Design",
-      content: "Normalize the database and create the necessary tables.",
-    },
-    {
-      title: "API Endpoints",
-      content: "Create RESTful API endpoints using Express.js.",
-    },
-    {
-      title: "Front-end Validation",
-      content: "Use client-side validation for forms using JavaScript.",
-    },
-    {
-      title: "Server-side Validation",
-      content:
-        "Implement server-side validation to protect against malicious input.",
-    },
-    {
-      title: "User Authentication",
-      content: "Implement JWT based authentication and OAuth.",
-    },
-    {
-      title: "Optimize Performance",
-      content: "Use lazy loading, code splitting and optimize images.",
-    },
-    {
-      title: "Final Testing",
-      content: "Perform unit tests, integration tests, and end-to-end tests.",
-    },
-  ];
-
   return (
-    <div className=" bg-light">
+    <div className=" bg-light h-screen ">
       <div className="z-10 flex h-[4rem] w-full flex-row items-center bg-white font-lexend text-heading font-heading ">
         <div className="flex items-center">
           <svg
@@ -93,8 +62,8 @@ function OngoingProjectScreen() {
         </div>
       </div>
 
-      <div className="h-screen">
-        <div className=" flex justify-center space-x-4  bg-white px-[1.5rem] pb-s-15">
+      <div className="h-screen ">
+        <div className=" flex justify-center space-x-4  bg-white px-[1.5rem] pb-s-15 ">
           <button
             onClick={() => setActiveTab("Roadmap")}
             className={`h-[3.25rem] w-[10rem] rounded-lg font-lexend text-label font-label ${
@@ -112,17 +81,20 @@ function OngoingProjectScreen() {
             About
           </button>
         </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center pb-[4.625rem]">
           <div className="w-full max-w-[1500px]">
             <div className="mx-m-15">
               {activeTab === "Roadmap" && (
                 <div className="section-transition">
                   <TitleBold text="TASKS" />
-                  {sampleTasks.map((task, index) => (
+                  {tasksData.map((task, index) => (
                     <TaskAccordian
-                      title={task.title}
-                      content={task.content}
-                      number={index + 1}
+                      title={task.taskTitle}
+                      preText={task.taskPreText}
+                      postText={task.taskPostText}
+                      code={task.taskCode}
+                      codeLanguage={task.taskCodeLanguage}
+                      number={task.taskNumber} // Using taskNumber here
                       key={index}
                     />
                   ))}
@@ -137,6 +109,17 @@ function OngoingProjectScreen() {
               )}
             </div>
           </div>
+        </div>
+        <div className="flex fixed bottom-0 w-full bg-white justify-center py-s-15">
+          <button className=" max-w-md mx-m-10 text-black flex flex-grow text-label font-lexend font-label bg-[#F3F3F3] text-center text-white  rounded-full py-s-15 ">
+            <p className=" text-black text-center w-full">Need Help?</p>
+          </button>
+          <button
+            onClick={goSubmit}
+            className="max-w-md mr-m-10 flex flex-grow text-label font-lexend font-label bg-[#F2C94C] text-white text-center  rounded-full py-s-15 "
+          >
+            <p className=" text-center w-full"> Ready to Submit</p>
+          </button>
         </div>
       </div>
     </div>
