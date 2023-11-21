@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       fontSize: {
@@ -33,13 +30,13 @@ export default {
       colors: {
         white: "#FFFFFF",
         primary: "#2E7CF6",
-        hover:"#3b86f6",
-        clicked:"#1f5db9",
+        hover: "#3b86f6",
+        clicked: "#1f5db9",
         "text-light": "#939393",
         light: "#F3F3F3",
         dark: "#000000",
-        green:"#219653",
-        lightgray:"#939393",
+        green: "#219653",
+        lightgray: "#939393",
       },
       margin: {
         "m-5": "0.313rem",
@@ -56,9 +53,10 @@ export default {
       },
       fontFamily: {
         lexend: ["lexend", "sans-serif"],
+        code: ["code", "sans-serif"],
+        hydro: ["hydro", "sans-serif"],
       },
     },
   },
   plugins: [],
-}
-
+};

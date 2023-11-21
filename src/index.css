@@ -6,6 +6,14 @@
   font-family: "lexend";
   src: url("../src/fonts/LexendDeca-VariableFont_wght.ttf");
 }
+@font-face {
+  font-family: "code";
+  src: url("../src/fonts/FiraCode-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "hydro";
+  src: url("../src/fonts/Electrolize-Regular.ttf");
+}
 * {
   -webkit-tap-highlight-color: transparent;
 }
@@ -77,3 +85,9 @@ a {
 a:hover {
   color: #6d9ee5; /* or any color of your choice for hover state */
 }
+
+.radio-checked:checked {
+  /* Change the accent color to your desired color */
+  accent-color: #2E7CF6; /* Tailwind green-400 */
+}
+

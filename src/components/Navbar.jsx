@@ -83,7 +83,8 @@ const Navbar = () => {
           />
         </svg>
       ),
-      route: id ? `/ongoing/${id}` : "/projects",
+      // route: id ? `/ongoing/${id}` : "/projects",
+      route: "/taskhandler",
     },
 
     // work: {

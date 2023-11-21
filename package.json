@@ -13,7 +13,6 @@
     "@alptugidin/react-circular-progress-bar": "^1.1.0",
     "@capacitor-community/native-audio": "^5.0.1",
     "@capacitor-firebase/authentication": "^5.1.0",
-    "@capacitor-firebase/firestore": "^5.1.0-dev.3050d98.1695803101",
     "@capacitor/android": "^5.4.2",
     "@capacitor/app": "^5.0.6",
     "@capacitor/cli": "^5.4.2",
@@ -36,7 +35,8 @@
     "react-shimmer": "^3.2.0",
     "react-spinners-kit": "^1.9.1",
     "react-syntax-highlighter": "^15.5.0",
-    "react-textarea-autosize": "^8.5.3"
+    "react-textarea-autosize": "^8.5.3",
+    "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {
     "@capacitor/assets": "^3.0.1",

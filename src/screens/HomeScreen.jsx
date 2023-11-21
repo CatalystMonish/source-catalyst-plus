@@ -5,7 +5,6 @@ import ProjectCard from "../components/ProjectCard";
 import ProjectItemCard from "../components/ProjectItemCard";
 import { UserAuth } from "../context/AuthContext";
 import FloatingActionButton from "../components/FloatingActionButton";
-import CardPostItem from "../components/CardPostItem";
 import { SphereSpinner } from "react-spinners-kit";
 import ProgressBar from "@ramonak/react-progress-bar";
 import OngoingCard from "../components/OngoingCard.jsx";
@@ -26,11 +25,13 @@ import machine from "../images/ic_machine.png";
 import ProjectStartModal from "../components/ProjectStartModal.jsx";
 import { NativeAudio } from "@capacitor-community/native-audio";
 import { Haptics, ImpactStyle } from "@capacitor/haptics";
+import HydroFloaty from "../hydro/HydroFloaty.jsx";
 
 function HomeScreen() {
   const [projectIds, setProjectIds] = useState([]);
   const { isLoading, setIsLoading } = useLoading();
   const { logOut, user } = UserAuth();
+  const [ranGreet, setRanGreet] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,6 +48,24 @@ function HomeScreen() {
     };
     fetchIds();
   }, [setIsLoading]);
+  useEffect(() => {
+    // ... existing code for fetching project IDs and preloading audio ...
+    // Select a random greeting for HydroFloaty
+    const greetings = [
+      "Oh, you again! Ready to engineer something?",
+      "Back for more wisdom, I see.",
+      "Clicked and delivered, what's up?",
+      "Hello, human! Time to build?",
+      "There you are! Miss me?",
+      "Ready to turn ideas into reality?",
+      "You rang, I answered. Let's go!",
+      "Look who's back for knowledge!",
+      "Need my brain? You got it.",
+      "Ah, the eager engineer returns!",
+    ];
+    setRanGreet(greetings[Math.floor(Math.random() * greetings.length)]);
+  }, []);
+
   useEffect(() => {
     // Preload audio when component mounts
     NativeAudio.preload({
@@ -86,6 +105,7 @@ function HomeScreen() {
             <ProjectCardFinal key={id} id={id} />
           ))}
         </ScrollMenu>
+        <HydroFloaty message={ranGreet} position="left-top" />
       </div>
     </div>
   );

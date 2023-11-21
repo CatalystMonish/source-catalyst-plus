@@ -43,7 +43,7 @@ function ProjectStartModal({ isOpen, closeModal, projectTime, projectID }) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="flex flex-col max-w-[400px]">
+      <div className="flex flex-col max-w-[350px]">
         <div className="w-full py-s-20 rounded-t-[10px] bg-white text-center flex items-center mx-auto">
           <svg
             onClick={closeModal}

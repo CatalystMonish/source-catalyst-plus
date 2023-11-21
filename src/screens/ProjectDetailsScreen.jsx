@@ -30,12 +30,12 @@ function ProjectDetailsScreen() {
   };
 
   return (
-    <div className="bg-light min-h-screen">
+    <div>
       <PageBar title="Project Details" />
       {project ? (
         <div className="flex flex-col items-center">
           <div className="w-full max-w-[1500px]">
-            <div className="min-h-screen pt-[4.5rem] bg-light ">
+            <div className="h-screen pt-[4.5rem] pb-[4rem] bg-light ">
               <div className="mx-m-20 bg-light">
                 <ProjectStartModal
                   isOpen={isPressed}
@@ -104,17 +104,9 @@ function ProjectDetailsScreen() {
                   ))}
                 </div>
 
-                <p className="mt-m-10 font-lexend text-label font-label text-text-light pb-[100px] bg-light">
+                <p className="mt-m-10 font-lexend text-label font-label  pb-[100px] bg-light">
                   {project.projectDescription}
                 </p>
-              </div>
-              <div className="flex fixed bottom-0 w-full bg-white justify-center py-s-15">
-                <button
-                  onClick={startProject}
-                  className="text-label max-w-md text-center flex flex-grow font-lexend font-label bg-[#219653] text-white max-w-screen mx-m-10 rounded-full py-s-15 "
-                >
-                  <p className="text-center w-full">Start Project</p>
-                </button>
               </div>
             </div>
           </div>
@@ -124,6 +116,14 @@ function ProjectDetailsScreen() {
           <LoadingModal isOpen={true} />
         </div>
       )}
+      <div className="flex w-full bottom-0 fixed bg-white justify-center py-s-15">
+        <button
+          onClick={startProject}
+          className="text-label max-w-md text-center flex flex-grow font-lexend font-label bg-[#219653] text-white max-w-screen mx-m-10 rounded-full py-s-15 "
+        >
+          <p className="text-center w-full">Start Project</p>
+        </button>
+      </div>
     </div>
   );
 }

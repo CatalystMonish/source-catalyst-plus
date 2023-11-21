@@ -16,6 +16,7 @@ import { LoadingProvider } from "./context/LoadingContext.jsx";
 import SubmissionScreen from "./screens/SubmissionScreen.jsx";
 import { IdProvider } from "./context/IdContext.jsx";
 import ProfileScreen from "./screens/ProfileScreen.jsx";
+import TaskHandlerScreen from "./screens/TaskHandlerScreen.jsx";
 
 function App() {
   return (
@@ -66,6 +67,15 @@ function App() {
                   }
                 />
 
+                <Route
+                  path="/taskhandler"
+                  exact
+                  element={
+                    <Protected>
+                      <TaskHandlerScreen />
+                    </Protected>
+                  }
+                />
                 <Route
                   element={
                     <Protected>

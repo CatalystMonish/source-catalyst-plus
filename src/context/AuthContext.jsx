@@ -8,7 +8,6 @@ import {
   signOut,
 } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { FirebaseFirestore } from "@capacitor-firebase/firestore";
 import { db, getFirebaseAuth } from "../firebase";
 
 const AuthContext = createContext();
@@ -40,25 +39,29 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const checkAndCreateUserDoc = async (currentUser) => {
-    const userRef = `users/${currentUser.uid}`;
+    if (currentUser) {
+      const userDocRef = doc(db, `users/${currentUser.uid}`);
 
-    const { snapshot } = await FirebaseFirestore.getDocument({
-      reference: userRef,
-    });
+      try {
+        const userDocSnapshot = await getDoc(userDocRef);
 
-    if (!snapshot.exists) {
-      const { displayName, email, photoURL, emailVerified } = currentUser;
-
-      await FirebaseFirestore.setDocument({
-        reference: userRef,
-        data: {
-          displayName,
-          email,
-          photoURL,
-          emailVerified,
-        },
-        merge: true,
-      });
+        if (!userDocSnapshot.exists()) {
+          const { displayName, email, photoURL, emailVerified } = currentUser;
+          await setDoc(
+            userDocRef,
+            {
+              displayName,
+              email,
+              photoURL,
+              emailVerified,
+            },
+            { merge: true }
+          );
+        }
+      } catch (error) {
+        console.error("Error creating user document: ", error);
+        throw error;
+      }
     }
   };
 
